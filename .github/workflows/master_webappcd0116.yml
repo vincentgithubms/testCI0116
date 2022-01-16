@@ -29,7 +29,7 @@ jobs:
 
       - name: Run composer install if composer.json exists
         if: steps.check_files.outputs.files_exists == 'true'
-        run: composer validate --no-check-publish && composer install --ignore-platform-reqs && composer update --ignore-platform-reqs
+        run: composer validate --no-check-publish && composer install --prefer-dist --no-progress
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
@@ -56,5 +56,5 @@ jobs:
         with:
           app-name: 'webappCD0116'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_901B68F7BFFD4EF0B6038A01416D47CA }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_29E080CC37EF4468A5B58F59D179F757 }}
           package: .
